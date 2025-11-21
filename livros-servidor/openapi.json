@@ -1,0 +1,79 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Livraria API",
+    "version": "1.0.0",
+    "description": "API para gerenciar editoras e livros"
+  },
+  "servers": [
+    { "url": "http://localhost:3030" }
+  ],
+  "components": {
+    "schemas": {
+      "Editora": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "codEditora": { "type": "integer" },
+          "nome": { "type": "string" },
+          "cidade": { "type": "string" }
+        }
+      },
+      "Livro": {
+        "type": "object",
+        "properties": {
+          "_id": { "type": "string" },
+          "titulo": { "type": "string" },
+          "codEditora": { "type": "integer" },
+          "resumo": { "type": "string" },
+          "autores": { "type": "array", "items": { "type": "string" } },
+          "ano": { "type": "integer" },
+          "editora": { "type": "string" }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/editoras": {
+      "get": {
+        "summary": "Listar editoras",
+        "responses": { "200": { "description": "Lista", "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Editora" } } } } } }
+      },
+      "post": {
+        "summary": "Criar editora",
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Editora" } } } },
+        "responses": { "200": { "description": "Criado" }, "500": { "description": "Erro" } }
+      }
+    },
+    "/editoras/{codigo}": {
+      "put": {
+        "summary": "Atualizar editora",
+        "parameters": [{ "name": "codigo", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Editora" } } } },
+        "responses": { "200": { "description": "Atualizado" }, "404": { "description": "Não encontrado" } }
+      },
+      "delete": {
+        "summary": "Excluir editora",
+        "parameters": [{ "name": "codigo", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Excluído" }, "404": { "description": "Não encontrado" } }
+      }
+    },
+    "/livros": {
+      "get": { "summary": "Listar livros", "responses": { "200": { "description": "Lista" } } },
+      "post": { "summary": "Criar livro", "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Livro" } } } }, "responses": { "200": { "description": "Criado" } } }
+    },
+    "/livros/{codigo}": {
+      "put": {
+        "summary": "Atualizar livro",
+        "parameters": [{ "name": "codigo", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Livro" } } } },
+        "responses": { "200": { "description": "Atualizado" }, "404": { "description": "Não encontrado" } }
+      },
+      "delete": {
+        "summary": "Excluir livro",
+        "parameters": [{ "name": "codigo", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "Excluído" }, "404": { "description": "Não encontrado" } }
+      }
+    }
+  }
+}

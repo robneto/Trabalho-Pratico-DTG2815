@@ -1,0 +1,16 @@
+<main class="container mt-4">
+    <div class="page-header mb-4">
+        <h1>Dados da Editora</h1>
+    </div>
+
+    <form (submit)="salvar(editora)">
+        <div class="form-group">
+            <label for="editora">Código:</label>
+            <input type="text" class="form-control" name="codEditora" [(ngModel)]="editora.codEditora"><br />
+        </div>
+        <label for="nome">Nome:</label>
+        <input type="text" class="form-control" name="nome" [(ngModel)]="editora.nome"><br />
+        <button type="submit" class="btn btn-primary">Salvar Dados</button>
+    </form>
+
+</main>

@@ -1,0 +1,25 @@
+<main class="container mt-4">
+    <div class="page-header mb-4">
+        <h1>Dados do Livro</h1>
+    </div>
+
+    <form (submit)="salvar(livro)">
+        <div class="form-group">
+            <label for="livro">Título:</label>
+            <input type="text" class="form-control" name="titulo" [(ngModel)]="livro.titulo"><br />
+        </div>
+        <label for="resumo">Resumo:</label>
+        <input type="text" class="form-control" name="resumo" [(ngModel)]="livro.resumo"><br />
+        <label for="editora">Editora:</label>
+        <select id="meuSelect" class="form-control custom-select dropdown-toggle" [(ngModel)]="livro.codEditora"
+            [ngModelOptions]="{standalone: true}">
+            <option *ngFor="let editora of editoras" [value]="editora.codEditora">
+                {{ editora.nome }}
+            </option>
+        </select><br />
+        <label for="autores">Autores (1 por linha):</label>
+        <textarea class="form-control" name="autores" [(ngModel)]="autoresForm" rows="3"></textarea><br />
+        <button type="submit" class="btn btn-primary">Salvar Dados</button>
+    </form>
+
+</main>

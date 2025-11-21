@@ -1,0 +1,8 @@
+.breadcrumb {
+  background: transparent;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+.breadcrumb a {
+  text-decoration: none;
+}

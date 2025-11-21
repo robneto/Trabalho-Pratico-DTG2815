@@ -1,0 +1,24 @@
+<main class="container mt-4">
+    <div class="page-header mb-4 d-flex justify-content-between align-items-center">
+        <h1>Catálogo de Editoras</h1>
+        <a class="btn btn-primary" [routerLink]="['/editoraDados']" title="Nova Editora" aria-label="Nova Editora">➕</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr class="bg-dark text-white fs-5">
+                <td class="p-2">Código</td>
+                <td class="p-2">Nome</td>
+                <td class="p-2 text-center">Ações</td>
+            </tr>
+            <tr *ngFor="let editora of editoras">
+                <td class="col-md-2">{{editora.codEditora}}</td>
+                <td class="col-md-6">{{editora.nome}}</td>
+                <td class="col-md-2 text-end">
+                    <a class="btn btn-sm btn-secondary me-2" [routerLink]="['/editoraDados', editora.codigo]" title="Editar" aria-label="Editar">✏️</a>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="excluir(editora.codigo.toString())" title="Excluir" aria-label="Excluir">🗑️</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</main>

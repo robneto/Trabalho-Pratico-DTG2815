@@ -1,0 +1,32 @@
+<main class="container mt-4">
+    <div class="page-header mb-4 d-flex justify-content-between align-items-center">
+        <h1>Catálogo de Livros</h1>
+        <a class="btn btn-primary" [routerLink]="['/livroDados']" title="Novo Livro" aria-label="Novo Livro">➕</a>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tr class="bg-dark text-white fs-5">
+                <td class="p-2">Título</td>
+                <td class="p-2">Resumo</td>
+                <td class="p-2">Editora</td>
+                <td class="p-2">Autores</td>
+                <td class="p-2 text-center">Ações</td>
+            </tr>
+            <tr *ngFor="let livro of livros">
+                <td class="col-md-3">{{livro.titulo}}</td>
+                <td class="col-md-5">{{livro.resumo}}</td>
+                <td class="col-md-2">{{getNomeEditora(livro.codEditora)}}</td>
+                <td class="col-md-1">
+                    <ul *ngFor="let autor of livro.autores">
+                        <li>{{autor}}</li>
+                    </ul>
+                </td>
+                <td class="col-md-1 text-end">
+                    <a class="btn btn-sm btn-secondary me-2" [routerLink]="['/livroDados', livro.codigo]" title="Editar" aria-label="Editar">✏️</a>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="excluir(livro.codigo.toString())" title="Excluir" aria-label="Excluir">🗑️</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</main>
